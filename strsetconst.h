@@ -1,0 +1,4 @@
+#ifndef STRSETCONST_H
+#define STRSETCONST_H
+
+#endif //STRSETCONST_H
