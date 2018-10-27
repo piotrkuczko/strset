@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-#ifndef STRSET_H
-#define STRSET_H
-
-#endif //STRSET_H
-=======
 //
 // Created by Piotrek on 17.10.2018.
 //
@@ -18,6 +12,9 @@
 #include <windows.h>
 
 //extern "C" {
+
+
+    std::map<long long int, std::pair<std::set <std::string>, bool > > strser_structure ;
 
     unsigned long strset_new();
 
@@ -69,4 +66,3 @@
 //}
 
 #endif //STRSET_STRSET_H
->>>>>>> poczatek

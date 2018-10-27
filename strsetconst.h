@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-#ifndef STRSETCONST_H
-#define STRSETCONST_H
-
-#endif //STRSETCONST_H
-=======
 //
 // Created by Piotrek on 21.10.2018.
 //
@@ -26,4 +20,3 @@ unsigned long strset42();
 
 
 #endif //STRSET_STRSETCONST_H
->>>>>>> poczatek

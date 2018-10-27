@@ -32,13 +32,13 @@ idType strset_new() {
     idType index = *free_ids.begin();
     free_ids.erase(free_ids.begin());
 
-    cout <<  __FUNCTION__ << " " <<  _ReturnAddress();
+    cout <<  __FUNCTION__ << endl;
     return 1;
 }
 
 
 void strset_delete(unsigned long id) {
-
+    if (str.)
 
 }
 size_t strset_size(unsigned long id) {
