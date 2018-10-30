@@ -1,7 +1,3 @@
-//
-// Created by Piotrek on 21.10.2018.
-//
-
 #include "strset.h"
 #include "strsetconst.h"
 #include <iostream>
@@ -12,16 +8,12 @@
 #define debug 1
 #endif
 
-
-
 namespace jnp1 {
-
-    using idType = unsigned long;
 
     static bool strset42_declared = false;
     static idType index;
 
-    unsigned long strset42() {
+    idType strset42() {
         if (debug)
             std::cerr << "strsetconst init invoked" << std::endl;
         if (strset42_declared) {

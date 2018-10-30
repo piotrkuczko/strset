@@ -7,7 +7,9 @@
 extern "C" {
     namespace jnp1 {
 #endif
-		unsigned long strset42();
+        typedef unsigned long idType;
+
+		idType strset42();
 
 #ifdef __cplusplus
     }

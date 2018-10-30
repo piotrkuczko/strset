@@ -1,7 +1,3 @@
-//
-// Created by Piotrek on 17.10.2018.
-//
-
 #include <map>
 #include <set>
 #include <iostream>
@@ -16,7 +12,6 @@
 #define debug 1
 #endif
 
-
 namespace jnp1 {
 
     using std::map;
@@ -27,8 +22,6 @@ namespace jnp1 {
     using std::endl;
     using std::stringstream;
     using LL = long long int;
-    using idType = unsigned long;
-
 
     set <idType> free_ids;
     idType first_not_generated = 0LL;
@@ -64,8 +57,6 @@ namespace jnp1 {
             cerr << a << "(" << b << ")" << endl << a << ": ";
     }
 
-
-
     bool start_function_with_const_char(string name, idType id, const char* value) {
         if (value == NULL) {
             init_cerr(name, itoa(id) + ", NULL");
@@ -92,7 +83,6 @@ namespace jnp1 {
         }
         return index;
     }
-
 
     void strset_delete(idType id) {
         init_cerr(__func__, itoa(id));
@@ -277,7 +267,6 @@ namespace jnp1 {
             return 1;
         }
     }
-
 
     int strset_comp(idType id1, idType id2) {
         init_cerr_short(__func__, itoa(id1) + ", " + itoa(id2));
