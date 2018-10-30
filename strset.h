@@ -5,13 +5,14 @@
 #ifndef STRSET_STRSET_H
 #define STRSET_STRSET_H
 
-#include <cstdlib>
+#include <stddef.h>
 
 #ifdef __cplusplus
 extern "C" {
+	namespace jnp1 {
 #endif
 	
-	namespace jnp1 {
+
 
 		unsigned long strset_new();
 	
@@ -60,7 +61,11 @@ extern "C" {
 		1, gdy sorted(id1) > sorted(id2).
 		Jeżeli zbiór o którymś z identyfikatorów nie istnieje, to jest traktowany
 		jako równy zbiorowi pustemu.*/
+
+#ifdef __cplusplus
 	}
 }
+#endif
+
 
 #endif //STRSET_STRSET_H

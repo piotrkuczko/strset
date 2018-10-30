@@ -129,8 +129,6 @@ namespace jnp1 {
         return size;
     }
 
-    static int strset42_start = 0;
-
     void strset_insert(idType id, const char* value) {
         if (start_function_with_const_char(__func__, id, value)) {
             return;

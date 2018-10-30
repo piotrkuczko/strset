@@ -3,13 +3,15 @@
 
 #include "strset.h"
 
+#ifdef __cplusplus
 extern "C" {
-	namespace jnp1 {
+    namespace jnp1 {
+#endif
+		unsigned long strset42();
 
-        using idType = unsigned long;
-
-		idType strset42();
-	}
+#ifdef __cplusplus
+    }
 }
+#endif
 
 #endif //JNP_STRSETCONST_H
