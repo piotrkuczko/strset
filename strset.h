@@ -1,17 +1,10 @@
-//
-// Created by Piotrek on 17.10.2018.
-//
-
-#ifndef STRSET_STRSET_H
-#define STRSET_STRSET_H
+#ifndef JNP_STRSET_H
+#define JNP_STRSET_H
 
 #include <cstdlib>
 
-
 extern "C" {
-	
-	
-	
+
 	namespace jnp1 {
 
 		unsigned long strset_new();
@@ -64,4 +57,4 @@ extern "C" {
 	}
 }
 
-#endif //STRSET_STRSET_H
+#endif //JNP_STRSET_H

@@ -1,12 +1,7 @@
-//
-// Created by Piotrek on 21.10.2018.
-//
-
-#ifndef STRSET_STRSETCONST_H
-#define STRSET_STRSETCONST_H
+#ifndef JNP_STRSETCONST_H
+#define JNP_STRSETCONST_H
 
 #include "strset.h"
-
 
 extern "C" {
 	namespace jnp1 {
@@ -14,6 +9,4 @@ extern "C" {
 	}
 }
 
-
-
-#endif //STRSET_STRSETCONST_H
+#endif //JNP_STRSETCONST_H

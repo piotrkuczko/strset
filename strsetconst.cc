@@ -1,7 +1,3 @@
-//
-// Created by Piotrek on 21.10.2018.
-//
-
 #include "strset.h"
 #include "strsetconst.h"
 #include <iostream>
@@ -11,8 +7,6 @@
 #else
 #define debug 0
 #endif
-
-#define debug 1
 
 namespace jnp1 {
 

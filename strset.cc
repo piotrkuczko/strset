@@ -1,7 +1,3 @@
-//
-// Created by Piotrek on 17.10.2018.
-//
-
 #include <map>
 #include <set>
 #include <iostream>
@@ -13,7 +9,6 @@
 #else
 #define debug 0
 #endif
-#define debug 1
 
 namespace jnp1 {
 
@@ -26,8 +21,7 @@ namespace jnp1 {
 	using std::stringstream;
 	using LL = long long int;
 	using idType = unsigned long;
-	
-	
+
 	set <idType> free_ids;
 	idType first_not_generated = 0LL;
 	map<idType, pair<bool, set<string> > > str;
@@ -61,17 +55,14 @@ namespace jnp1 {
 		if (debug)
 			cerr << a << "(" << b << ")" << endl << a << ": ";
 	}
-	
-	
-	
-	bool start_function_with_const_char(string name, idType id, const char* value) {
+
+	bool start_function_with_const_char(string , idType id, const char* value) {
 		if (value == NULL) {
 			init_cerr_short(__func__, itoa(id) + ", NULL");
 			//blad
 			return true;
 		}
 		return false;
-	
 	}
 	
 	idType strset_new() {
@@ -81,16 +72,14 @@ namespace jnp1 {
 		}
 		idType index = *free_ids.begin();
 		free_ids.erase(free_ids.begin());
-	
-	
+
 		str[index] = make_pair(false, set<string>());
 		if (debug) {
 			cerr << "set " << index << " created" << endl;
 		}
 		return index;
 	}
-	
-	
+
 	void strset_delete(idType id) {
 		init_cerr(__func__, itoa(id));
 		map<idType, pair<bool, set<string> > >::iterator it = str.find(id);
@@ -272,7 +261,6 @@ namespace jnp1 {
 			return 1;
 		}
 	}
-	
 	
 	int strset_comp(unsigned long id1, unsigned long id2) {
 		init_cerr_short (__func__, itoa(id1) + ", " + itoa(id2));
