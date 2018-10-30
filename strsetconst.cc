@@ -2,16 +2,22 @@
 #include "strsetconst.h"
 #include <iostream>
 
-#ifdef NDEBUG
-#define debug 0
-#else
-#define debug 1
-#endif
+namespace {
 
-namespace jnp1 {
+    using idType = unsigned long;
+
+    #ifdef NDEBUG
+        #define debug 0
+    #else
+        #define debug 1
+    #endif
 
     static bool strset42_declared = false;
     static idType index;
+
+}
+
+namespace jnp1 {
 
     idType strset42() {
         if (debug)
@@ -33,4 +39,5 @@ namespace jnp1 {
             std::cerr << "strsetconst init finished" << std::endl;
         return index;
     }
+
 }

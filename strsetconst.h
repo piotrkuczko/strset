@@ -1,19 +1,21 @@
-#ifndef JNP_STRSETCONST_H
-#define JNP_STRSETCONST_H
+#ifndef STRSETCONST_H
+#define STRSETCONST_H
 
 #include "strset.h"
 
 #ifdef __cplusplus
+
+#include <iostream>
+
 extern "C" {
     namespace jnp1 {
-#endif
-        typedef unsigned long idType;
+#endif //__cplusplus
 
 		idType strset42();
 
 #ifdef __cplusplus
     }
 }
-#endif
+#endif //__cplusplus
 
-#endif //JNP_STRSETCONST_H
+#endif //STRSETCONST_H
