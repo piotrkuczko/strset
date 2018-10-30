@@ -5,7 +5,10 @@
 
 extern "C" {
 	namespace jnp1 {
-		unsigned long strset42();
+
+        using idType = unsigned long;
+
+		idType strset42();
 	}
 }
 

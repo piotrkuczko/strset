@@ -9,10 +9,8 @@
 #endif
 
 namespace jnp1 {
-
-	using idType = unsigned long;
 	
-	unsigned long strset42() {
+	idType strset42() {
 		if (debug)
 			std::cerr << "strsetconst init invoked" << std::endl;
 		idType index = jnp1::strset_new();

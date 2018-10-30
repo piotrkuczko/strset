@@ -20,7 +20,6 @@ namespace jnp1 {
 	using std::endl;
 	using std::stringstream;
 	using LL = long long int;
-	using idType = unsigned long;
 
 	set <idType> free_ids;
 	idType first_not_generated = 0LL;
@@ -115,7 +114,7 @@ namespace jnp1 {
 		return size;
 	}
 	
-	void strset_insert(unsigned long id, const char* value) {
+	void strset_insert(idType id, const char* value) {
 		if (start_function_with_const_char(__func__, id, value)) {
 			return;
 		}
@@ -153,7 +152,7 @@ namespace jnp1 {
 		}
 	}
 	
-	void strset_remove(unsigned long id, const char* value) {
+	void strset_remove(idType id, const char* value) {
 		if (start_function_with_const_char(__func__, id, value)) {
 			return;
 		}
@@ -184,7 +183,7 @@ namespace jnp1 {
 		}
 	}
 	
-	int strset_test(unsigned long id, const char* value) {
+	int strset_test(idType id, const char* value) {
 		if (start_function_with_const_char(__func__, id, value)) {
 			return 0;
 		}
@@ -210,7 +209,7 @@ namespace jnp1 {
 		}
 	}
 	
-	void strset_clear(unsigned long id) {
+	void strset_clear(idType id) {
 		init_cerr(__func__, itoa(id));
 		map<idType, pair<bool, set<string> > >::iterator it = str.find(id);
 		if (it != str.end()) {
@@ -230,11 +229,11 @@ namespace jnp1 {
 		}
 	}
 	
-	int strset_compare (unsigned long id1, unsigned long id2) {
+	int strset_compare (idType id1, idType id2) {
 		map<idType, pair<bool, set<string> > >::iterator it1, it2;
 		it1 = str.find(id1);
 		it2 = str.find(id2);
-		if (it1 != str.end() && it2 != str.end()) {
+		if (it1 != str.end() && it2 != stmainr.end()) {
 			if (it1->second.second < it2->second.second)
 				return -1;
 			else if (it1->second.second == it2->second.second)
@@ -262,7 +261,7 @@ namespace jnp1 {
 		}
 	}
 	
-	int strset_comp(unsigned long id1, unsigned long id2) {
+	int strset_comp(idType id1, idType id2) {
 		init_cerr_short (__func__, itoa(id1) + ", " + itoa(id2));
 		int val = strset_compare (id1, id2);
 		if (debug)
