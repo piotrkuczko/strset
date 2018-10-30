@@ -1,6 +1,5 @@
 #include <map>
 #include <set>
-#include <iostream>
 #include <sstream>
 #include <cassert>
 #include "strset.h"
@@ -8,18 +7,24 @@
 
 namespace {
 
-    #ifdef NDEBUG
-        #define debug 0
-    #else
-        #define debug 1
-    #endif
+#ifdef NDEBUG
+#define debug 0
+#else
+#define debug 1
+#endif
 
     using LL = long long int;
     using idType = unsigned long;
 
-    std::set <idType> free_ids;
+    std::set <idType> & free_ids() {
+        static std::set <idType> free_ids;
+        return free_ids;
+    }
     idType first_not_generated = 0LL;
-    std::map<idType, std::pair<bool, std::set<std::string> > > str;
+    std::map<idType, std::pair<bool, std::set<std::string> > > & str() {
+        static std::map<idType, std::pair<bool, std::set<std::string> > > str;
+        return str;
+    }
     const std::string const_key = "const^NV+*63s9LtPdLDB->1 F69EF,;|\a##eLK,ZU`M{Te5z;V+SBmB9#ot@$kmeRLl`Doh?PjanU6yRes,V`_g";
 
     inline std::string itoa(idType a) {
@@ -35,8 +40,8 @@ namespace {
     }
 
     std::string name(idType id) {
-        std::map<idType, std::pair<bool, std::set<std::string> > >::iterator it = str.find(id);
-        if (it == str.end())
+        std::map<idType, std::pair<bool, std::set<std::string> > >::iterator it = str().find(id);
+        if (it == str().end())
             return "set " + itoa(id);
         return name(it);
     }
@@ -66,23 +71,23 @@ namespace {
 
     int strset_compare(idType id1, idType id2) {
         std::map<idType, std::pair<bool, std::set<std::string> > >::iterator it1, it2;
-        it1 = str.find(id1);
-        it2 = str.find(id2);
-        if (it1 != str.end() && it2 != str.end()) {
+        it1 = str().find(id1);
+        it2 = str().find(id2);
+        if (it1 != str().end() && it2 != str().end()) {
             if (it1->second.second < it2->second.second)
                 return -1;
             else if (it1->second.second == it2->second.second)
                 return 0;
             else return 1;
         }
-        else if (it1 == str.end() && it2 == str.end()) {
+        else if (it1 == str().end() && it2 == str().end()) {
             if (debug) {
                 std::cerr << "strset_comp: set " << id1 << " does not exist" << std::endl;
                 std::cerr << "strset_comp: set " << id2 << " does not exist" << std::endl;
             }
             return 0;
         }
-        else if (it1 == str.end()) {
+        else if (it1 == str().end()) {
             if (debug) {
                 std::cerr << "strset_comp: set " << id1 << " does not exist" << std::endl;
             }
@@ -102,12 +107,12 @@ namespace jnp1 {
 
     idType strset_new() {
         init_cerr(__func__, "");
-        while (free_ids.empty()) {
-            free_ids.insert(first_not_generated++);
+        while (free_ids().empty()) {
+            free_ids().insert(first_not_generated++);
         }
-        idType index = *free_ids.begin();
-        free_ids.erase(free_ids.begin());
-        str.insert({index, make_pair(false, std::set<std::string>())});
+        idType index = *free_ids().begin();
+        free_ids().erase(free_ids().begin());
+        str().insert({index, make_pair(false, std::set<std::string>())});
         if (debug) {
             std::cerr << "set " << index << " created" << std::endl;
         }
@@ -116,15 +121,15 @@ namespace jnp1 {
 
     void strset_delete(idType id) {
         init_cerr(__func__, itoa(id));
-        std::map<idType, std::pair<bool, std::set<std::string> > >::iterator it = str.find(id);
-        if (it != str.end()) {
+        std::map<idType, std::pair<bool, std::set<std::string> > >::iterator it = str().find(id);
+        if (it != str().end()) {
             if (it->second.first) {
                 if (debug)
                     std::cerr << "attempt to remove the 42 Set" << std::endl;
             }
             else {
-                free_ids.insert(it->first);
-                str.erase(it);
+                free_ids().insert(it->first);
+                str().erase(it);
                 if (debug)
                     std::cerr << "set " << id << " deleted" << std::endl;
             }
@@ -137,8 +142,8 @@ namespace jnp1 {
 
     size_t strset_size(idType id) {
         init_cerr(__func__, itoa(id));
-        std::map<idType, std::pair<bool, std::set<std::string> > >::iterator it = str.find(id);
-        if (it == str.end()) {
+        std::map<idType, std::pair<bool, std::set<std::string> > >::iterator it = str().find(id);
+        if (it == str().end()) {
             if (debug)
                 std::cerr << "set " << id << " does not exist" << std::endl;
             return 0;
@@ -156,13 +161,13 @@ namespace jnp1 {
 
         std::string s(value);
 
-        std::map<idType, std::pair<bool, std::set<std::string> > >::iterator it = str.find(id);
-        if (it != str.end() && it->second.second.size() == 1 && *(it->second.second.begin()) == "42" && value == const_key) {
+        std::map<idType, std::pair<bool, std::set<std::string> > >::iterator it = str().find(id);
+        if (it != str().end() && it->second.second.size() == 1 && *(it->second.second.begin()) == "42" && value == const_key) {
             it->second.first = true;
             return;
         }
         init_cerr(__func__, itoa(id) + ", \"" + s + "\"");
-        if (it != str.end()) {
+        if (it != str().end()) {
             if (it->second.first == false) {
                 size_t size_before = it->second.second.size();
                 it->second.second.insert(s);
@@ -193,8 +198,8 @@ namespace jnp1 {
         }
         std::string s(value);
         init_cerr(__func__, itoa(id) + ", \"" + s + "\"");
-        std::map<idType, std::pair<bool, std::set<std::string> > >::iterator it = str.find(id);
-        if (it != str.end()) {
+        std::map<idType, std::pair<bool, std::set<std::string> > >::iterator it = str().find(id);
+        if (it != str().end()) {
             if (it->second.first == false) {
                 size_t size_before = it->second.second.size();
                 it->second.second.erase(s);
@@ -225,8 +230,8 @@ namespace jnp1 {
         }
         std::string s(value);
         init_cerr(__func__, itoa(id) + ", \"" + s + "\"");
-        std::map<idType, std::pair<bool, std::set<std::string> > >::iterator it = str.find(id);
-        if (it != str.end()) {
+        std::map<idType, std::pair<bool, std::set<std::string> > >::iterator it = str().find(id);
+        if (it != str().end()) {
             if (it->second.second.find(s) != it->second.second.end()) { // istnieje
                 if (debug)
                     std::cerr << name(it) << " contains the element \"" << s << "\"" << std::endl;
@@ -247,8 +252,8 @@ namespace jnp1 {
 
     void strset_clear(idType id) {
         init_cerr(__func__, itoa(id));
-        std::map<idType, std::pair<bool, std::set<std::string> > >::iterator it = str.find(id);
-        if (it != str.end()) {
+        std::map<idType, std::pair<bool, std::set<std::string> > >::iterator it = str().find(id);
+        if (it != str().end()) {
             if (it->second.first) {
                 if (debug)
                     std::cerr << "attempt to clear the 42 Set" << std::endl;

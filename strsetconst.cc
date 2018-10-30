@@ -1,16 +1,15 @@
 #include "strset.h"
 #include "strsetconst.h"
-#include <iostream>
 
 namespace {
 
     using idType = unsigned long;
 
-    #ifdef NDEBUG
-        #define debug 0
-    #else
-        #define debug 1
-    #endif
+#ifdef NDEBUG
+#define debug 0
+#else
+#define debug 1
+#endif
 
     static bool strset42_declared = false;
     static idType index;

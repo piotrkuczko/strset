@@ -4,15 +4,16 @@
 #include "strset.h"
 
 #ifdef __cplusplus
+#include <iostream>
 
 extern "C" {
-    namespace jnp1 {
+namespace jnp1 {
 #endif //__cplusplus
 
-		idType strset42();
+    idType strset42();
 
 #ifdef __cplusplus
-    }
+}
 }
 #endif //__cplusplus
 
