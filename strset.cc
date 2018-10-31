@@ -25,7 +25,6 @@ namespace {
         static std::map<idType, std::pair<bool, std::set<std::string> > > str;
         return str;
     }
-    const std::string const_key = "const^NV+*63s9LtPdLDB->1 F69EF,;|\a##eLK,ZU`M{Te5z;V+SBmB9#ot@$kmeRLl`Doh?PjanU6yRes,V`_g";
 
     inline std::string itoa(idType a) {
         std::stringstream s;
@@ -62,7 +61,7 @@ namespace {
 
             if (debug)
                 std::cerr << "invalid value (NULL)" << std::endl;
-            assert (value != NULL);
+            //assert (value != NULL);
             return true;
         }
         return false;
@@ -160,14 +159,24 @@ namespace jnp1 {
         }
 
         std::string s(value);
-
+        init_cerr_short(__func__, itoa(id) + ", \"" + s + "\"");
+        idType index = strset42();
         std::map<idType, std::pair<bool, std::set<std::string> > >::iterator it = str().find(id);
-        if (it != str().end() && it->second.second.size() == 1 && *(it->second.second.begin()) == "42" && value == const_key) {
+        /*if (it != str().end() && it->second.second.size() == 1 && *(it->second.second.begin()) == "42" && value == const_key) {
             it->second.first = true;
             return;
-        }
-        init_cerr(__func__, itoa(id) + ", \"" + s + "\"");
+        }*/
+        if (debug)
+            std::cerr << __func__ << ": ";
         if (it != str().end()) {
+            if (id == index) {
+                //str().insert({index, make_pair(true, std::set<std::string>())});
+                it->second.second.insert("42");
+                it->second.first=true;
+                if (debug)
+                    std::cerr << "set " << id << ", element \"" << s << "\" inserted" << std::endl;
+                return;
+            }
             if (it->second.first == false) {
                 size_t size_before = it->second.second.size();
                 it->second.second.insert(s);
